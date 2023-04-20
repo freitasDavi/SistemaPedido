@@ -10,6 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { RouteModule } from './route.module';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RouteModule } from './route.module';
     ListaEstadoComponent,
     LayoutComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    CadastroUsuarioComponent
   ],
   imports: [
     BrowserModule,
