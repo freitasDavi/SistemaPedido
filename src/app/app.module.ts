@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { RouteModule } from './route.module';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
     LayoutComponent,
     MenuComponent,
     HomeComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

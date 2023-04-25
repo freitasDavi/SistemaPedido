@@ -15,7 +15,7 @@ export class CadastroUsuarioComponent implements OnInit {
     this.carregar();
   }
 
-  public carregar () : void {
+  public carregar(): void {
     this.nome = String(localStorage.getItem('nome'));
     this.email = String(localStorage.getItem('email'));
     this.password = String(localStorage.getItem('password'));
@@ -25,7 +25,7 @@ export class CadastroUsuarioComponent implements OnInit {
     if (this.password == "null") this.password = "";
   }
 
-  public salvar () : void {
+  public salvar(): void {
 
     if (
       this.nome.trim().length == 0 ||
@@ -42,13 +42,13 @@ export class CadastroUsuarioComponent implements OnInit {
 
     localStorage.setItem('nome', this.nome);
     localStorage.setItem('email', this.email);
-    localStorage.setItem('password', this.password);
+    localStorage.setItem('password', window.btoa(this.password));
 
     alert("Usuário cadastrado com sucesso");
 
   }
 
-  public limparStorage () : void {
+  public limparStorage(): void {
     localStorage.clear();
 
     this.nome = "";
