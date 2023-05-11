@@ -12,6 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { RouteModule } from './route.module';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { LoginComponent } from './login/login.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { ProdutoComponent } from './produto/produto.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { ListarProdutoComponent } from './listar-produto/listar-produto.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
+import { ListaCidadeComponent } from './lista-cidade/lista-cidade.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +29,20 @@ import { LoginComponent } from './login/login.component';
     MenuComponent,
     HomeComponent,
     CadastroUsuarioComponent,
-    LoginComponent
+    LoginComponent,
+    ClienteComponent,
+    ProdutoComponent,
+    PedidoComponent,
+    ListarProdutoComponent,
+    ListaClientesComponent,
+    ListaCidadeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouteModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

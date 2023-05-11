@@ -1,0 +1,27 @@
+<main class="center">
+  <h1 class="heading">Clientes</h1>
+  <div class="flex-start">
+    <a routerLink="/cidade/novo" class="btn btn-primary btn-sm">Criar novo </a>
+  </div>
+  <table class="table pequeno-container">
+    <thead>
+      <tr>
+        <th scope=" col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cidade of cidadeService.cidades; index as indexOfElement;">
+        <th scope="row">{{ indexOfElement + 1 }}</th>
+        <td>{{ cidade.nome }}</td>
+        <td>{{ cidade.estado }}</td>
+        <td><fa-icon [icon]="faPen" class="color-green" (click)="handleEditar(indexOfElement)"></fa-icon></td>
+        <td><fa-icon [icon]="faTrash" class="color-red" (click)="handleExcluir(indexOfElement)"></fa-icon></td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+</main>

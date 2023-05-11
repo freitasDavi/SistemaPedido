@@ -1,0 +1,39 @@
+.color-red {
+  color: rgb(180, 10, 10);
+  cursor: pointer;
+}
+
+.color-green {
+  color: rgb(74, 116, 13);
+  cursor: pointer;
+
+}
+
+.pequeno-container {
+  width: 700px;
+}
+
+.flex-start {
+  margin: 8px 0;
+  display: flex;
+  flex: 1;
+  width: 700px;
+  justify-content: flex-end;
+}
+
+.center {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+.heading {
+  width: 700px;
+  padding: 16px;
+  // text-align: end;
+  background-color: rgba(166, 240, 82, 0.63);
+  border-radius: 4px;
+}

@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CidadeService } from '../service/cidade.service';
+import { ActivatedRoute } from '@angular/router';
+
+export interface Cidade {
+  nome: string;
+  estado: string;
+};
 
 @Component({
   selector: 'app-cadastro-cidade',
@@ -8,21 +15,48 @@ import { Component, OnInit } from '@angular/core';
 export class CadastroCidadeComponent implements OnInit {
   public nome: string = "";
   public estado: string = "";
+  public indice: number = -1;
+
+  @ViewChild('lista_component') listaEstado: any;
+
+  constructor(
+    private cidadeService: CidadeService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.load();
+    this.activatedRoute.params
+      .subscribe((params: any) => {
+        this.indice = params.indice;
+        if (params.indice !== "novo") {
+          let cliente = this.cidadeService.recuperarPorId(this.indice);
+          this.nome = cliente.nome;
+          this.estado = cliente.estado;
+        }
+      })
   }
 
-  public salvar() {
-    localStorage.setItem('nome', this.nome);
-    localStorage.setItem('estado', this.estado);
+  public handleSalvar() {
+    if (this.nome.trim().length == 0 || this.estado.trim().length == 0) {
+      return alert("É necessário informar todos os campos");
+    }
+
+    let objSalvar: Cidade = {
+      estado: this.estado,
+      nome: this.nome,
+    };
+
+    if (String(this.indice) === "novo") {
+      this.cidadeService.insert(objSalvar);
+    } else {
+      this.cidadeService.update(this.indice, objSalvar);
+    }
+
+    this.limparCidade();
   }
 
-  public limparStorage() {
-    localStorage.clear();
-  }
-
-  public load() {
-    this.nome = String(localStorage.getItem('nome'));
+  public limparCidade() {
+    this.nome = "";
+    this.estado = "";
   }
 }

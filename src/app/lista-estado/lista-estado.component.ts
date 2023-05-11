@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-lista-estado',
@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
 })
 export class ListaEstadoComponent {
   public estados: string[] = ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Distrito Federal', 'Espírito Santo', 'Goiás', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba', 'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul', 'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins']
-  public estadoSelecionado: string = "Acre";
+  public estadoSelecionado: string = "Santa Catarina";
+
+  public emitirEstado = new EventEmitter();
+
+  getEstado(): string {
+    this.emitirEstado.emit();
+
+    return this.estadoSelecionado;
+  }
 }
