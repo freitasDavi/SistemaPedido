@@ -19,7 +19,7 @@
         <th scope="row">{{ indexOfElement + 1 }}</th>
         <td>{{ cliente.nome }}</td>
         <td>{{ cliente.cpf }}</td>
-        <td>{{ cliente.cidade }}</td>
+        <td>{{ cliente.cidade.nome }}</td>
         <td><fa-icon [icon]="faPen" class="color-green" (click)="handleEditar(indexOfElement)"></fa-icon></td>
         <td><fa-icon [icon]="faTrash" class="color-red" (click)="handleExcluir(indexOfElement)"></fa-icon></td>
       </tr>

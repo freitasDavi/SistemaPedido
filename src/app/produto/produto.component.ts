@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../service/produto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Produto {
   nome: string;
@@ -20,7 +20,8 @@ export class ProdutoComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -49,6 +50,7 @@ export class ProdutoComponent implements OnInit {
       this.produtoService.insert(objSalvar);
     } else {
       this.produtoService.update(this.indice, objSalvar);
+      this.router.navigateByUrl('/produtos');
     }
 
 

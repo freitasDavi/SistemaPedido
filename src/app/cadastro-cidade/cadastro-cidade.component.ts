@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CidadeService } from '../service/cidade.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Cidade {
   nome: string;
@@ -12,7 +12,7 @@ export interface Cidade {
   templateUrl: './cadastro-cidade.component.html',
   styleUrls: ['./cadastro-cidade.component.scss']
 })
-export class CadastroCidadeComponent implements OnInit {
+export class CadastroCidadeComponent implements OnInit, AfterViewInit {
   public nome: string = "";
   public estado: string = "";
   public indice: number = -1;
@@ -21,7 +21,8 @@ export class CadastroCidadeComponent implements OnInit {
 
   constructor(
     private cidadeService: CidadeService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,20 +30,26 @@ export class CadastroCidadeComponent implements OnInit {
       .subscribe((params: any) => {
         this.indice = params.indice;
         if (params.indice !== "novo") {
-          let cliente = this.cidadeService.recuperarPorId(this.indice);
-          this.nome = cliente.nome;
-          this.estado = cliente.estado;
+          let cidade = this.cidadeService.recuperarPorId(this.indice);
+          this.nome = cidade.nome;
+          this.estado = cidade.estado;
         }
       })
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.listaEstado.setEstado(this.estado);
+    }, 500)
+  }
+
   public handleSalvar() {
-    if (this.nome.trim().length == 0 || this.estado.trim().length == 0) {
+    if (this.nome.trim().length == 0) {
       return alert("É necessário informar todos os campos");
     }
 
     let objSalvar: Cidade = {
-      estado: this.estado,
+      estado: this.listaEstado.getEstado(),
       nome: this.nome,
     };
 
@@ -53,10 +60,12 @@ export class CadastroCidadeComponent implements OnInit {
     }
 
     this.limparCidade();
+
+    this.router.navigateByUrl('/cidade');
   }
 
   public limparCidade() {
     this.nome = "";
-    this.estado = "";
+    // this.estado = "";
   }
 }

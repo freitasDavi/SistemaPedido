@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ClienteService } from '../service/cliente.service';
 import { ActivatedRoute } from '@angular/router';
+import { Cidade } from '../cadastro-cidade/cadastro-cidade.component';
 
 export interface Cliente {
   nome: string;
   cpf: string;
-  cidade: string;
+  cidade: Cidade;
 }
 
 @Component({
@@ -13,10 +14,12 @@ export interface Cliente {
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.scss']
 })
-export class ClienteComponent implements OnInit {
+export class ClienteComponent implements OnInit, AfterViewInit {
   public nome: string = '';
   public cpf: string = '';
-  public cidade: string = '';
+  public cidade: Cidade = {} as Cidade;
+
+  @ViewChild('combo_cidade') comboCidade: any;
 
   public indice: number = -1;
 
@@ -38,9 +41,15 @@ export class ClienteComponent implements OnInit {
       })
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.comboCidade.setCidade(this.cidade);
+    })
+  }
+
   public handleSalvar() {
     let objSalvar: Cliente = {
-      cidade: this.cidade,
+      cidade: this.comboCidade.getCidade(),
       cpf: this.cpf,
       nome: this.nome
     }
@@ -56,21 +65,8 @@ export class ClienteComponent implements OnInit {
     alert("sucessagem")
   }
 
-  public salvarClientesNoLocalStorage(clientes: Cliente[]): void {
-    localStorage.setItem('clientes', JSON.stringify(clientes));
-
-    this.limparClientes();
-  }
-
   public limparClientes() {
     this.nome = "";
     this.cpf = "";
-    this.cidade = "";
-  }
-
-  public getClientesFromLocalStorage(): Cliente[] {
-    const clientes = JSON.parse(String(localStorage.getItem('clientes')));
-
-    return clientes;
   }
 }

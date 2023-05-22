@@ -22,7 +22,7 @@ export class ListaCidadeComponent implements OnInit {
   }
 
   public handleEditar(index: number) {
-    this.router.navigateByUrl(`cidades/${index}`);
+    this.router.navigateByUrl(`cidade/${index}`);
   }
 
   public handleExcluir(index: number) {

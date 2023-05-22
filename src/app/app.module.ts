@@ -19,6 +19,7 @@ import { ListarProdutoComponent } from './listar-produto/listar-produto.componen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 import { ListaCidadeComponent } from './lista-cidade/lista-cidade.component';
+import { ComboCidadeComponent } from './combo-cidade/combo-cidade.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ListaCidadeComponent } from './lista-cidade/lista-cidade.component';
     PedidoComponent,
     ListarProdutoComponent,
     ListaClientesComponent,
-    ListaCidadeComponent
+    ListaCidadeComponent,
+    ComboCidadeComponent
   ],
   imports: [
     BrowserModule,
