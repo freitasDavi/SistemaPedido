@@ -26,6 +26,8 @@ export class ClienteService {
   public update(index: number, cliente: Cliente) {
     this.clientes[index] = cliente;
 
+    console.log(cliente);
+
     this.salvar();
   }
 

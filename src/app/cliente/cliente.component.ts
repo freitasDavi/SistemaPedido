@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ClienteService } from '../service/cliente.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cidade } from '../cadastro-cidade/cadastro-cidade.component';
 
 export interface Cliente {
   nome: string;
   cpf: string;
-  cidade: Cidade;
+  cidade: string;
 }
 
 @Component({
@@ -17,7 +17,7 @@ export interface Cliente {
 export class ClienteComponent implements OnInit, AfterViewInit {
   public nome: string = '';
   public cpf: string = '';
-  public cidade: Cidade = {} as Cidade;
+  public cidade: string = '';
 
   @ViewChild('combo_cidade') comboCidade: any;
 
@@ -25,7 +25,8 @@ export class ClienteComponent implements OnInit, AfterViewInit {
 
   constructor(
     private clienteService: ClienteService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,11 +49,15 @@ export class ClienteComponent implements OnInit, AfterViewInit {
   }
 
   public handleSalvar() {
+    let cidade = this.comboCidade.getCidade();
+
     let objSalvar: Cliente = {
-      cidade: this.comboCidade.getCidade(),
+      cidade: cidade,
       cpf: this.cpf,
       nome: this.nome
     }
+
+    console.log(objSalvar);
 
     if (String(this.indice) === "novo") {
       this.clienteService.insert(objSalvar);
@@ -63,6 +68,8 @@ export class ClienteComponent implements OnInit, AfterViewInit {
     this.limparClientes();
 
     alert("sucessagem")
+
+    this.router.navigateByUrl("/clientes");
   }
 
   public limparClientes() {

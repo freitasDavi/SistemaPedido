@@ -9,7 +9,7 @@ import { Cidade } from '../cadastro-cidade/cadastro-cidade.component';
 })
 export class ComboCidadeComponent implements OnInit {
   public cidades: Cidade[] = [];
-  public cidadeSelecionada: Cidade = {} as Cidade;
+  public cidadeSelecionada: string = "";
 
   public emitGetCidade = new EventEmitter();
   public emitSetCidade = new EventEmitter();
@@ -26,10 +26,12 @@ export class ComboCidadeComponent implements OnInit {
   public getCidade() {
     this.emitGetCidade.emit();
 
+    console.log(this.cidadeSelecionada);
+
     return this.cidadeSelecionada;
   }
 
-  public setCidade(cidade: Cidade) {
+  public setCidade(cidade: string) {
     this.emitSetCidade.emit();
     this.cidadeSelecionada = cidade;
   }
