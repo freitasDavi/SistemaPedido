@@ -30,8 +30,10 @@ export class ProdutoComponent implements OnInit {
         this.indice = params.indice;
         if (params.indice !== "criar") {
           let produto = this.produtoService.recuperarPorId(this.indice);
-          this.nome = produto.nome;
-          this.valor = produto.valor;
+          if (produto !== null) {
+            this.nome = produto.nome;
+            this.valor = produto.valor;
+          }
         }
       });
   }

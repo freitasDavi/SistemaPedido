@@ -1,0 +1,9 @@
+<div class="input-group mb-3">
+  <input type="text" name="codigoProduto" [(ngModel)]="id_produto" class="form-control" placeholder="1" aria-label="id"
+    (blur)="carregarProduto()">
+  <input type="text" name="nomeProduto" [(ngModel)]="nome_produto" class="form-control"
+    placeholder="Recipient's username" disabled aria-label="descricao">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+    <fa-icon [icon]="faSearch" class="color-green"></fa-icon>
+  </button>
+</div>

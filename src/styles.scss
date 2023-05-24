@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+.small-cont {
+  width: 500px;
+}
+
+.center-cad {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flex-start-c {
+  display: flex;
+  flex: 1;
+  width: 500px;
+  align-items: flex-start;
+}

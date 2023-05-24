@@ -10,6 +10,7 @@ import { ProdutoComponent } from './produto/produto.component';
 import { ListarProdutoComponent } from './listar-produto/listar-produto.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 import { ListaCidadeComponent } from './lista-cidade/lista-cidade.component';
+import { VendasComponent } from './vendas/vendas.component';
 
 const routes: Routes = [
   {
@@ -65,8 +66,11 @@ const routes: Routes = [
   {
     path: "produtos/criar",
     component: ProdutoComponent
+  },
+  {
+    path: "vendas",
+    component: VendasComponent
   }
-
 ];
 
 @NgModule({

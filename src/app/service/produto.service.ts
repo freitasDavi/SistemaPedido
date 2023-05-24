@@ -40,8 +40,12 @@ export class ProdutoService {
   }
 
   public recuperarPorId(index: number) {
-    this.produtos = this.getProdutosFromLocalStorage();
+    try {
+      this.produtos = this.getProdutosFromLocalStorage();
 
-    return this.produtos[index];
+      return this.produtos[index];
+    } catch (e) {
+      return null;
+    }
   }
 }
